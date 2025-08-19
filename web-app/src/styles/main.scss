@@ -1,6 +1,22 @@
+// * {
+//   outline: 1px solid red;
+// }
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --primary-color: #085696;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
 .App {
-  background-color: #eee;
+  background: url("../images/bg.png") no-repeat center center;
+  background-size: cover;
   min-height: 100vh;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -9,18 +25,63 @@
 .page {
   width: 600px;
   max-width: 100%;
-  margin: 0 auto;
-  min-height: 100vh;
+  height: fit-content;
+  margin: auto;
   padding: 2rem;
+  border-radius: 1rem;
   background: #fff;
+
+  &-home {
+    padding: 6rem 8rem;
+  }
+
+  &-header {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   &-title h1 {
     text-align: center;
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  &-body {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 22px;
+    font-weight: 500;
+
+    .btn {
+      width: fit-content;
+      padding: 1rem 15%;
+      color: white;
+      border-radius: 1rem;
+      background-color: var(--primary-color);
+      font-size: 2rem;
+    }
   }
 
   &-control {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+
+    a {
+      all: unset;
+      cursor: pointer;
+      border-bottom: 5px solid var(--primary-color);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
   }
 }
