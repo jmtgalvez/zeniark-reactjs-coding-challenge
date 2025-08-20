@@ -1,11 +1,15 @@
-// * {
-//   outline: 1px solid red;
-// }
+* {
+  // outline: 1px solid red;
+  box-sizing: border-box;
+}
 
+// import Poppins font from Google Fonts
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
   --primary-color: #085696;
+  --confirm-green: #4fbd1b;
+  --decline-red: #e04e10;
 }
 
 body {
@@ -23,33 +27,60 @@ body {
 }
 
 .page {
-  width: 600px;
+  width: 900px;
   max-width: 100%;
   height: fit-content;
+  min-height: 700px;
   margin: auto;
-  padding: 2rem;
+  padding: 4rem;
   border-radius: 1rem;
   background: #fff;
+  display: flex;
+  flex-flow: column;
 
   &-home {
-    padding: 6rem 8rem;
+    padding: 8rem;
+
+    .page-header {
+      justify-content: center;
+    }
+
+    .page-title h1 {
+      text-align: center;
+      font-size: 35px;
+      font-weight: 600;
+    }
+  }
+
+  &-quiz {
+    .page-body {
+      font-size: 3rem;
+      font-weight: 400;
+      margin-top: 2rem;
+      border-top: 1px solid #e3e3e3;
+      border-bottom: 1px solid #e3e3e3;
+    }
   }
 
   &-header {
-    padding: 2rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    justify-content: space-between;
+    gap: 2rem;
 
-  &-title h1 {
-    text-align: center;
-    font-size: 35px;
-    font-weight: 600;
-    margin-bottom: 0;
+    p {
+      font-size: 20px;
+    }
+
+    .page-title {
+      flex-grow: 1;
+      font-size: 25px;
+      font-weight: 600;
+      margin: 0;
+    }
   }
 
   &-body {
+    flex-grow: 1;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -58,30 +89,46 @@ body {
     gap: 1rem;
     font-size: 22px;
     font-weight: 500;
-
-    .btn {
-      width: fit-content;
-      padding: 1rem 15%;
-      color: white;
-      border-radius: 1rem;
-      background-color: var(--primary-color);
-      font-size: 2rem;
-    }
   }
 
   &-control {
     display: flex;
     justify-content: center;
+    gap: 2rem;
     margin-top: 2rem;
 
     a {
       all: unset;
       cursor: pointer;
       border-bottom: 5px solid var(--primary-color);
-      font-size: 2rem;
+      font-size: 35px;
       font-weight: 600;
       color: var(--primary-color);
       text-decoration: none;
+    }
+  }
+
+  .btn {
+    cursor: pointer;
+    width: fit-content;
+    padding: 1rem 2rem;
+    color: white;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: var(--primary-color);
+    font-size: 2rem;
+
+    &:disabled,
+    &-disabled {
+      cursor: default;
+    }
+
+    &-true {
+      background-color: var(--confirm-green);
+    }
+
+    &-false {
+      background-color: var(--decline-red);
     }
   }
 }

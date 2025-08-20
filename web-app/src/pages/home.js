@@ -11,7 +11,14 @@ export default function HomePage() {
       </div>
       <div className="page-body">
         <p>You will be presented with 10 True or False questions.</p>
-        <p className="btn">Can you score 10/10?</p>
+        <p
+          className="btn btn-disabled"
+          style={{
+            padding: "1rem 15%",
+          }}
+        >
+          Can you score 10/10?
+        </p>
       </div>
       <div className="page-control">
         <Link to="quiz">LET’S START!</Link>
