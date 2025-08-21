@@ -8,7 +8,8 @@ export const loadQuestions = async () => {
 export const getQuestion = async (usedQuestions) => {
   const questions = await loadQuestions();
   const filteredQuestions = questions.filter(
-    (question) => !usedQuestions.includes(question.question)
+    (question) =>
+      !usedQuestions.map((q) => q.question).includes(question.question)
   );
   const newQuestion =
     shuffle(filteredQuestions)[

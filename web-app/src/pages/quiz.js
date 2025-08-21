@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
+import { useQuizContext } from "../hooks/quiz-context";
 import { getQuestion } from "../lib/data";
 
 export default function QuizPage() {
-  const LIMIT = 10;
-  const [questions, setQuestions] = useState([]);
-  const [answers, setAnswers] = useState([]);
+  const { questions, answers, addQuestion, addAnswer, limit } =
+    useQuizContext();
   const [currentQuestion, setCurrentQuestion] = useState(undefined);
 
   async function loadNextQuestion() {
@@ -14,22 +15,20 @@ export default function QuizPage() {
   }
 
   async function submitAnswer(answer) {
-    setAnswers([...answers, answer]);
-    await loadNextQuestion();
+    addAnswer(answer);
+    if (questions.length < limit) await loadNextQuestion();
   }
-
-  const gameHasEnded = answers.length === LIMIT;
 
   useEffect(() => {
     loadNextQuestion();
   }, []);
 
   useEffect(() => {
-    if (currentQuestion) setQuestions((prev) => [...prev, currentQuestion]);
+    if (currentQuestion) addQuestion(currentQuestion);
   }, [currentQuestion]);
 
-  if (gameHasEnded) {
-    return <p>Results</p>;
+  if (answers.length === limit) {
+    return <Navigate to="/results" />;
   }
 
   return (
@@ -41,9 +40,11 @@ export default function QuizPage() {
           height="65px"
           alt="logo"
         />
-        <p className="page-title">Category: {currentQuestion?.category}</p>
+        <p className="page-header-title">
+          Category: {currentQuestion?.category}
+        </p>
         <p style={{ whiteSpace: "nowrap" }}>
-          {questions.length} of {LIMIT}
+          {questions.length} of {limit}
         </p>
       </div>
       <div className="page-body">

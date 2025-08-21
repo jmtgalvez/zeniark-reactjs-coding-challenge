@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { useQuizContext } from "../hooks/quiz-context";
 
 export default function HomePage() {
+  const { startQuiz } = useQuizContext();
+
   return (
     <div className="page page-home">
       <div className="page-header">
@@ -21,7 +23,9 @@ export default function HomePage() {
         </p>
       </div>
       <div className="page-control">
-        <Link to="quiz">LET’S START!</Link>
+        <button className="btn-link" onClick={startQuiz}>
+          LET’S START!
+        </button>
       </div>
     </div>
   );
